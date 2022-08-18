@@ -5,25 +5,33 @@ import java.io.InputStreamReader;
 
 class k_goodness_string{
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
         int t = Integer.parseInt(br.readLine());
         int count=0;
         while (t>0){
 
         count++;
-        
-        String s = br.readLine();
-        int k = Integer.parseInt(br.readLine());
-        int goodness = 0;
-        int n=s.length();
-        for (int i=0;i<n/2;i++){
-            if (s.charAt(i)!=s.charAt(n-i-1))
-                goodness+=1; 
-        }
-        return Math.abs(goodness-k);
+        String [] l1= br.readLine().split(" ");
+        int n = Integer.parseInt(l1[0]);
+        int k = Integer.parseInt(l1[1]);
+        String [] l2= br.readLine().split(" ");
+        String s ="";
+        for (int i=0;i<n;i++)
+            s+=l2[i];
+        System.out.println(minops(s,n, k));
+
         t--;
     
     }
+}
+public static int minops(String s,int n,int k){
+    int goodness = 0;
+
+    for (int i=0;i<n/2;i++){
+        if (s.charAt(i)!=s.charAt(n-i-1))
+            goodness+=1; 
+    }
+    return Math.abs(goodness-k);
 }
 }
